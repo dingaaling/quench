@@ -67,7 +67,9 @@ def main():
 
     # send thirst score
     global thirst_to_send
+    global currentTime
     thirst_to_send = int(np.ceil(thirst))
+    currentTime = str(datetime.datetime.now().time())
     thirstScore.append(thirst)
 
     return redirect(url_for("main"))
@@ -75,7 +77,8 @@ def main():
 @app.route('/score')
 def getdata():
     global thirst_to_send
-    content = {'event': 'ThirstData', 'data': str(thirst_to_send), 'published_at': str(datetime.datetime.now().time())}
+    global currentTime
+    content = {'event': 'ThirstData', 'data': str(thirst_to_send), 'published_at': currentTime}
     return(json.dumps(content))
 
 if __name__ == "__main__":
