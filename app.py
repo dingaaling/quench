@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from flask import Flask, redirect, render_template, request, url_for, flash
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pandas as pd
@@ -78,4 +80,4 @@ def getdata():
 
 if __name__ == "__main__":
     app.config["DEBUG"] = True
-    app.run()
+    app.run(host="0.0.0.0", port=80)
