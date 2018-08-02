@@ -4,7 +4,7 @@ from flask import Flask, redirect, render_template, request, url_for, flash
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pandas as pd
 import numpy as np
-import string, json
+import string, json, datetime
 
 #vader sentiment analysis
 analyzer = SentimentIntensityAnalyzer()
@@ -75,9 +75,10 @@ def main():
 @app.route('/score')
 def getdata():
     global thirst_to_send
-    content = {'name': 'Thirst Data', 'thirstScore': str(thirst_to_send)}
+    content = {'event': 'ThirstData', 'data': str(thirst_to_send), 'published_at': str(datetime.datetime.now().time())}
     return(json.dumps(content))
 
 if __name__ == "__main__":
     app.config["DEBUG"] = True
-    app.run(host="0.0.0.0", port=80)
+    # app.run(host="0.0.0.0", port=80)
+    app.run()
