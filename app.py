@@ -16,13 +16,14 @@ dictionary = df.values.T.tolist()[0]
 
 #variables
 comments, thirstScore = [], []
-sessionMood, thirst_to_send, dirtyCount = 0.0, 0, 0
+sessionMood, thirst_to_send= 0.0, 0
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def main():
 
+    dirtyCount = 0
     sessionMood = np.mean(thirstScore)
 
     # mood ring hsl changing
